@@ -6,12 +6,12 @@ This repository includes a working example.
 
 Add the following code to your html file:
 ```html
-<div class="parallax" width="###" height="###">
+<div class="parallax" width="###" height="###" ref="window">
     <img src="image" height="###" width="###" />
     <img src="another image" height="###" width="###" />
 </div>
 ```
-Adjust widths and heights above AND in your css.
+Adjust widths and heights above AND in your css. The parameter `ref` is optional. If it is set to `window`, the parallax element is no longer position dependent. Instead the effect is controlled by the absolute position of the curser in the browser window, instead of its relative position.
 The wider/higher your image is, the faster it will move.
 
 # Known issues

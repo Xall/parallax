@@ -7,10 +7,16 @@ window.addEvent('domready', function() {
     var parallaxWidth = parallax.getProperty('width');
     var parallaxHeight = parallax.getProperty('height');
 
-    var parallaxPos = parallax.getPosition()[0];
+    var ref = parallax.getProperty('ref');
+    if (ref == "window") {
+        refWidth = window.getSize().x;
+        refHeight = window.getSize().y;
+    }else{
+        refWidth = parallaxWidth;
+        refHeight = parallaxHeight;
+    };
 
-    parallax.setStyle('width', parallaxWidth);
-    parallax.setStyle('height', parallaxHeight);
+    var parallaxPos = parallax.getPosition()[0];
 
     //item, width, height, dx, dy
     var workingArray = [[0],[0]];
@@ -20,20 +26,20 @@ window.addEvent('domready', function() {
         workingArray[i][0] = item;
         workingArray[i][1] = item.getProperty('width');
         workingArray[i][2] = item.getProperty('height');
-        workingArray[i][3] = (parallaxWidth - workingArray[i][1]) / parallaxWidth;
-        workingArray[i][4] = (parallaxHeight - workingArray[i][2]) / parallaxHeight;
+        workingArray[i][3] = (parallaxWidth - workingArray[i][1]) / refWidth;
+        workingArray[i][4] = (parallaxHeight - workingArray[i][2]) / refHeight;
     })
 
     window.addEvent('mousemove',function(event){
         var mouseX = event.page.x - parallaxPos.x;
         var mouseY = event.page.y - parallaxPos.y;
 
-        if (mouseX > parallaxWidth)
-            mouseX = parallaxWidth;
+        if (mouseX > refWidth)
+            mouseX = refWidth;
         if (mouseX < 0)
             mouseX = 0;
-        if (mouseY > parallaxHeight)
-            mouseY = parallaxHeight;
+        if (mouseY > refHeight)
+            mouseY = refHeight;
         if (mouseY < 0)
             mouseY = 0;
 
