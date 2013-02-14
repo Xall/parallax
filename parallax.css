@@ -1,0 +1,10 @@
+.parallax img{
+    position: absolute;
+}
+.parallax{
+    width: 850px;
+    height: 50px;
+    background-image: url("images/bg.png");
+    overflow: hidden;
+    position: relative;
+}
